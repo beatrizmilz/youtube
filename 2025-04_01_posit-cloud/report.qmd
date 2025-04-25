@@ -1,0 +1,64 @@
+---
+title: "Exemplo de relatório"
+format: html
+---
+
+Carregar pacotes:
+```{r}
+#| warning: false
+library(tidyverse)
+library(readxl)
+library(janitor)
+```
+
+Importar os dados:
+```{r}
+dados_sigbm_brutos <- read_excel("data/sigbm.xlsx", skip = 4)
+```
+
+```{r}
+#| message: FALSE
+info_data <- read_excel("data/sigbm.xlsx", col_names = FALSE) |> 
+  slice(1) |> 
+  as.character() |> 
+  discard(is.na)
+
+info_data
+
+data_string <- str_extract(info_data[1], "\\d{2}/\\d{2}/\\d{4}")
+```
+
+
+Preparar os dados:
+```{r}
+dados_sigbm <- clean_names(dados_sigbm_brutos)
+dados_risco_alto <- dados_sigbm |> 
+  count(uf, categoria_de_risco) |> 
+  filter(categoria_de_risco == "Alto") |> 
+  mutate(uf = fct_reorder(uf, -n)) 
+```
+
+
+Fazer o gráfico:
+```{r}
+#| label: ggplot-alto-risco
+#| dpi: 300
+grafico_risco_alto <-  dados_risco_alto |> 
+  ggplot(aes(x = uf, y = n)) +
+  geom_col(fill = "lightblue") +
+  labs(title = "Número de barragens com categoria de risco alto por UF",
+       x = "UF",
+       y = "Número de barragens",
+       caption = str_glue("Fonte: dados do SIGBM de {data_string}.")) +
+  theme_minimal() 
+
+grafico_risco_alto
+```
+
+
+Salvar o gráfico:
+```{r}
+ggsave("figs/grafico_risco_alto.png", 
+       plot = grafico_risco_alto, 
+       width = 10, height = 6, dpi = 300)
+```
