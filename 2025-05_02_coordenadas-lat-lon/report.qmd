@@ -1,0 +1,87 @@
+---
+title: "Exemplo de relatório"
+format: html
+---
+
+Carregar pacotes:
+```{r}
+#| warning: false
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(sf)
+library(parzer)
+```
+
+Importar os dados:
+```{r}
+dados_sigbm_brutos <- read_excel("data/sigbm.xlsx", skip = 4)
+```
+
+```{r}
+#| message: FALSE
+info_data <- read_excel("data/sigbm.xlsx", col_names = FALSE) |> 
+  slice(1) |> 
+  as.character() |> 
+  discard(is.na)
+
+info_data
+
+data_string <- str_extract(info_data[1], "\\d{2}/\\d{2}/\\d{4}")
+```
+
+
+Preparar os dados:
+
+```{r}
+dados_sigbm_brutos |> 
+  select(Latitude, Longitude)
+```
+
+```{r}
+dados_sigbm <- clean_names(dados_sigbm_brutos) |> 
+  mutate(lat = parse_lat(latitude),
+         lon = parse_lon(longitude)) 
+```
+
+
+```{r}
+dados_sigbm |> 
+  select(latitude, longitude, lat, lon) 
+```
+
+
+Transformar os dados em um objeto `sf`:
+```{r}
+dados_sigbm_sf <- dados_sigbm |> 
+  st_as_sf(coords = c("lon", "lat"), crs = 4326)
+```
+
+Visualizar os dados:
+```{r}
+#| label: mapa-ggplot
+
+dados_sigbm_sf |> 
+  ggplot() +
+  geom_sf() +
+  labs(caption = str_glue("Fonte: dados do SIGBM de {data_string}.")) +
+  theme_minimal()
+```
+
+
+## Extra: usando o geobr para ver a delimitação dos estados
+
+```{r}
+library(geobr)
+brasil_sf <- read_state(year = 2020)
+```
+Visualizar os dados:
+
+```{r}
+#| label: mapa-ggplot-brasil
+ggplot() +
+  geom_sf(data = brasil_sf, fill = "lightgrey") +
+  geom_sf(data = dados_sigbm_sf) +
+  labs(caption = str_glue("Fonte: dados do SIGBM de {data_string}.")) +
+  theme_minimal()
+```
