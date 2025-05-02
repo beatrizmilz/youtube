@@ -4,34 +4,33 @@ about: Template para facilitar a criação dos novos vídeos
 title: ''
 labels: ''
 assignees: beatrizmilz
-
 ---
-# Tarefas
 
-## Preparação
+# 🎬 Tarefas para criação de vídeo
+
+## 🧠 Preparação
 - [ ] Definir tema do vídeo
 - [ ] Escrever o roteiro
 - [ ] Preparar códigos para usar no vídeo
 
-## Gravação
-- [ ] Gravação
+## 🎥 Gravação
+- [ ] Gravar vídeo completo
 
-## Edição
-- [ ] Edição
-   - [ ] Editar versão longa para Youtube
-   - [ ] Editar versão curta, para shorts e reels
-     
-## Publicação
+## ✂️ Edição
+- [ ] Editar versão longa (YouTube)
+- [ ] Editar versão curta (Shorts, Reels)
+
+## 📤 Publicação
 - [ ] Criar thumbnail
-- [ ] Escrever descrição e título para o vídeo no YouTube
-- [ ] Postar vídeo longo no Youtube
-- [ ] Postar vídeo curto (shorts) no YouTube
+- [ ] Escrever descrição e título para o YouTube
+- [ ] Postar vídeo longo no YouTube
+- [ ] Postar vídeo curto (Shorts)
+- [ ] Atualizar playlists ou catálogo de vídeos
 
-## Divulgação
-- [ ] Postar reels no instagram
-- [ ] Configurar manychat para o reels no instagram
-- [ ] Divulgar nas redes sociais:
-   - [ ] BlueSky
-   - [ ] LinkedIn
-   - [ ] Telegram?
-
+## 📣 Divulgação
+- [ ] Postar reels no Instagram
+- [ ] Configurar ManyChat para o reels
+- [ ] Divulgar nas redes:
+  - [ ] BlueSky
+  - [ ] LinkedIn
+  - [ ] Telegram (opcional)
