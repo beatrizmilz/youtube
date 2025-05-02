@@ -1,12 +1,15 @@
 ---
 name: Video
 about: Template para facilitar a criação dos novos vídeos
-title: ''
+title: '[ano-mes] Tema'
 labels: ''
 assignees: beatrizmilz
 ---
 
 # 🎬 Tarefas para criação de vídeo
+
+## Dúvida
+[Se a ideia do vídeo tiver partido de uma dúvida, escrever aqui: qual foi a dúvida, quem enviou, onde enviou...]
 
 ## 🧠 Preparação
 - [ ] Definir tema do vídeo
