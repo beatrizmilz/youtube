@@ -15,6 +15,7 @@ assignees: beatrizmilz
 - [ ] Definir tema do vídeo
 - [ ] Escrever o roteiro
 - [ ] Preparar códigos para usar no vídeo
+- [ ] Revisar o roteiro
 
 ## 🎥 Gravação
 - [ ] Gravar vídeo completo
